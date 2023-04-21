@@ -1,0 +1,23 @@
+
+%%
+
+%standalone
+%class Lexico
+%unicode
+%line
+%column
+// %cup
+
+DIGITO = [0-9]
+LETRA = [A-Za-z]
+INTEIRO = 0 | [1-9] {DIGITO}*   
+IDENTIFICADOR = {LETRA} ({LETRA} | {DIGITO})*
+
+FIMLINHA = \r|\n|\r\n
+ESPACO = {FIMLINHA} | [ \t\f]
+
+%%
+
+{INTEIRO}       { System.out.println("Inteiro: " + yytext() + ", linha: " + (yyline+1) + ", coluna: " + (yycolumn+1) + ", NroDigitos: " + yylength()); }
+{IDENTIFICADOR} { System.out.println("Identificador: " + yytext() + ", linha: " + (yyline+1) + ", coluna: " + (yycolumn+1) + ", NroCaracteres: " + yylength()); }
+{ESPACO}        { /* ignorar */ }
