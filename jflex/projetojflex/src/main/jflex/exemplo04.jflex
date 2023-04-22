@@ -49,6 +49,11 @@ class Valor {
         tipo = TipoValor.IDENTIFICADOR;
     }
 
+    public Valor(double valorDecimal) {
+        this.valorDecimal = valorDecimal;
+        tipo = TipoValor.DECIMAL;
+    }
+
     public int getValorInteiro() {
         return valorInteiro;
     }
@@ -162,18 +167,10 @@ class Token {
 DIGITO = [0-9]
 LETRA = [A-Za-z]
 INTEIRO = 0 | [1-9]{DIGITO}*
-IDENTIFICADOR = {LETRA} ({LETRA} | {DIGITO})*
 STRING = \"[^\"]*\"
-
-REAL = {INTEIRO}\.{INTEIRO}
-PALAVRA_RESERVADA = "and"|"array"|"begin"|"case"|"const"|"div"|"do"|"downto"|"else"|"end"|"file"|"for"|"function"|"goto"|"if"|"in"|"label"|"mod"|"nil"|"not"|"of"|"or"|"packed"|"procedure"|"program"|"record"|"repeat"|"set"|"then"|"to"|"type"|"until"|"var"|"while"|"with"
-ATRIBUICAO = ":="
-MAIOR_IGUAL = ">="
-MENOR_IGUAL = "<="
-DIFERENTE = "<>"
-PARENTESE_ESQUERDO = "\("
-PARENTESE_DIREITO = "\)"
-
+REAL = {INTEIRO}\.{DIGITO}+
+PALAVRA = {LETRA}({LETRA}|{DIGITO})*|"and"|"array"|"begin"|"case"|"const"|"div"|"do"|"downto"|"else"|"end"|"file"|"for"|"function"|"goto"|"if"|"in"|"label"|"mod"|"nil"|"not"|"of"|"or"|"packed"|"procedure"|"program"|"record"|"repeat"|"set"|"then"|"to"|"type"|"until"|"var"|"while"|"with"
+OPERADORES = ":="|">="|"<="|"<>"|"="|":"|"\+"|"-"|"/"|"*"|">"|"<"|","|";"|"."|"\(" | "\)"
 FIMLINHA = \r|\n|\r\n
 ESPACO = {FIMLINHA} | [ \t\f]
 
@@ -246,27 +243,68 @@ public static void main(String[] argv) {
 
 %%
 
+{ESPACO}     { /* Ignorar */ }
 {INTEIRO}       { return new Token(yyline + 1, yycolumn + 1, Classe.cInt, new Valor(Integer.parseInt(yytext()))); }
-{IDENTIFICADOR} { return new Token(yyline + 1, yycolumn + 1, Classe.cId, new Valor(yytext())); }
-{ESPACO}        { /* ignorar */ }
-
-{STRING} = { return new Token(yyline + 1, yycolumn + 1, Classe.cString, new Valor(yytext())); }
-{REAL} = { return new Token(yyline + 1, yycolumn + 1, Classe.cReal, new Valor(Integer.parseInt(yytext()))); }
-{PALAVRA_RESERVADA} = { return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext())); }
-":" { return new Token(yyline + 1, yycolumn + 1, Classe.cDoisPontos, new Valor(yytext())); }
-{ATRIBUICAO} = { return new Token(yyline + 1, yycolumn + 1, Classe.cAtribuicao, new Valor(yytext())); }
-"+" { return new Token(yyline + 1, yycolumn + 1, Classe.cMais); }
-"-" { return new Token(yyline + 1, yycolumn + 1, Classe.cMenos, new Valor(yytext())); }
-"=" { return new Token(yyline + 1, yycolumn + 1, Classe.cIgual, new Valor(yytext())); }
-">" { return new Token(yyline + 1, yycolumn + 1, Classe.cMaior, new Valor(yytext())); }
-"<" { return new Token(yyline + 1, yycolumn + 1, Classe.cMenor, new Valor(yytext())); }
-{MAIOR_IGUAL} = { return new Token(yyline + 1, yycolumn + 1, Classe.cMaiorIgual, new Valor(yytext())); }
-{MENOR_IGUAL} = { return new Token(yyline + 1, yycolumn + 1, Classe.cMenorIgual, new Valor(yytext())); }
-"/" { return new Token(yyline + 1, yycolumn + 1, Classe.cDivisao, new Valor(yytext())); }
-"*" { return new Token(yyline + 1, yycolumn + 1, Classe.cMultiplicacao, new Valor(yytext())); }
-{DIFERENTE} = { return new Token(yyline + 1, yycolumn + 1, Classe.cDiferente, new Valor(yytext())); }
-"," { return new Token(yyline + 1, yycolumn + 1, Classe.cVirgula, new Valor(yytext())); }
-";" { return new Token(yyline + 1, yycolumn + 1, Classe.cPontoVirgula, new Valor(yytext())); }
-"." { return new Token(yyline + 1, yycolumn + 1, Classe.cPonto, new Valor(yytext())); }
-{PARENTESE_ESQUERDO} = { return new Token(yyline + 1, yycolumn + 1, Classe.cParEsq, new Valor(yytext())); }
-{PARENTESE_DIREITO} = { return new Token(yyline + 1, yycolumn + 1, Classe.cParDir, new Valor(yytext())); }
+{STRING}        { return new Token(yyline + 1, yycolumn + 1, Classe.cString, new Valor(yytext())); }
+{REAL}          { return new Token(yyline + 1, yycolumn + 1, Classe.cReal, new Valor(Double.parseDouble(yytext()))); }
+{PALAVRA} {
+  switch (yytext()) {
+    case "and":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "array": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "begin":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "case":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "const":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "div": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "do":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "downto":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "else": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "end": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "file": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "for":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "function":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "goto":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "if":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "in":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "label": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "mod": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "nil": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "not":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "of":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "or":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "packed":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "procedure":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "program":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "record":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "repeat": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "set": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "then": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "to":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "type":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "until":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "var":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "while":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "with":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    default:  return new Token(yyline + 1, yycolumn + 1, Classe.cId, new Valor(yytext()));
+  }
+}
+{OPERADORES} {
+    switch (yytext()) {
+        case ":=": return new Token(yyline + 1, yycolumn + 1, Classe.cAtribuicao, new Valor(yytext()));
+        case ">=": return new Token(yyline + 1, yycolumn + 1, Classe.cMaiorIgual, new Valor(yytext()));
+        case "<=": return new Token(yyline + 1, yycolumn + 1, Classe.cMenorIgual, new Valor(yytext()));
+        case "<>": return new Token(yyline + 1, yycolumn + 1, Classe.cDiferente, new Valor(yytext()));
+        case ":":  return new Token(yyline + 1, yycolumn + 1, Classe.cDoisPontos, new Valor(yytext()));
+        case "+":  return new Token(yyline + 1, yycolumn + 1, Classe.cMais, new Valor(yytext()));
+        case "-":  return new Token(yyline + 1, yycolumn + 1, Classe.cMenos, new Valor(yytext()));
+        case "/":  return new Token(yyline + 1, yycolumn + 1, Classe.cDivisao, new Valor(yytext()));
+        case "*":  return new Token(yyline + 1, yycolumn + 1, Classe.cMultiplicacao, new Valor(yytext()));
+        case ">":  return new Token(yyline + 1, yycolumn + 1, Classe.cMaior, new Valor(yytext()));
+        case "<":  return new Token(yyline + 1, yycolumn + 1, Classe.cMenor, new Valor(yytext()));
+        case "=":  return new Token(yyline + 1, yycolumn + 1, Classe.cIgual, new Valor(yytext()));
+        case ",":  return new Token(yyline + 1, yycolumn + 1, Classe.cVirgula, new Valor(yytext()));
+        case ";":  return new Token(yyline + 1, yycolumn + 1, Classe.cPontoVirgula, new Valor(yytext()));
+        case ".":  return new Token(yyline + 1, yycolumn + 1, Classe.cPonto, new Valor(yytext()));
+        case "(": return new Token(yyline + 1, yycolumn + 1, Classe.cParEsq, new Valor(yytext()));
+        case ")": return new Token(yyline + 1, yycolumn + 1, Classe.cParDir, new Valor(yytext()));
+    }
+}

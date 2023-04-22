@@ -53,6 +53,11 @@ class Valor {
         tipo = TipoValor.IDENTIFICADOR;
     }
 
+    public Valor(double valorDecimal) {
+        this.valorDecimal = valorDecimal;
+        tipo = TipoValor.DECIMAL;
+    }
+
     public int getValorInteiro() {
         return valorInteiro;
     }
@@ -210,12 +215,9 @@ class Lexico {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\1\0\1\1\1\3\22\0\1\1"+
-    "\1\0\1\4\5\0\1\5\1\6\1\7\1\10\1\11"+
-    "\1\12\1\13\1\14\1\15\11\16\1\17\1\20\1\21"+
-    "\1\22\1\23\2\0\32\24\6\0\1\25\1\26\1\27"+
-    "\1\30\1\31\1\32\1\33\1\34\1\35\1\24\1\36"+
-    "\1\37\1\40\1\41\1\42\1\43\1\24\1\44\1\45"+
-    "\1\46\1\47\1\50\1\51\1\24\1\52\1\24\u0185\0";
+    "\1\0\1\4\5\0\6\5\1\6\1\5\1\7\11\10"+
+    "\1\11\1\5\1\12\1\13\1\14\2\0\32\15\6\0"+
+    "\32\15\u0185\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -242,13 +244,11 @@ class Lexico {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\2\1\3\0\1\2\1\3\1\4\1\5\1\6"+
-    "\1\7\2\10\1\11\1\12\1\13\1\14\1\15\24\16"+
-    "\1\0\1\17\1\20\5\0\27\16\1\21\2\0\1\22"+
-    "\1\23\1\24\1\25\4\16\1\26\13\16\1\27\16\16";
+    "\1\0\2\1\1\0\1\2\2\3\2\2\1\4\1\5"+
+    "\1\0\1\6";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[108];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -273,23 +273,11 @@ class Lexico {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\53\0\126\0\201\0\254\0\327\0\53\0\53"+
-    "\0\53\0\53\0\53\0\53\0\u0102\0\u012d\0\u0158\0\53"+
-    "\0\u0183\0\53\0\u01ae\0\u01d9\0\u0204\0\u022f\0\u025a\0\u0285"+
-    "\0\u02b0\0\u02db\0\u0306\0\u0331\0\u035c\0\u0387\0\u03b2\0\u03dd"+
-    "\0\u0408\0\u0433\0\u045e\0\u0489\0\u04b4\0\u04df\0\u050a\0\u0535"+
-    "\0\53\0\53\0\u0560\0\u058b\0\u05b6\0\u05e1\0\u060c\0\u0637"+
-    "\0\u0662\0\u068d\0\u06b8\0\u06e3\0\u070e\0\u0739\0\u0764\0\u078f"+
-    "\0\u07ba\0\u07e5\0\u0810\0\u083b\0\u0866\0\u0891\0\u08bc\0\u08e7"+
-    "\0\u0912\0\u093d\0\u0968\0\u0993\0\u09be\0\u09e9\0\53\0\u0a14"+
-    "\0\u0a3f\0\53\0\53\0\53\0\53\0\u0a6a\0\u0a95\0\u0ac0"+
-    "\0\u0aeb\0\53\0\u0b16\0\u0b41\0\u0b6c\0\u0b97\0\u0bc2\0\u0bed"+
-    "\0\u0c18\0\u0c43\0\u0c6e\0\u0c99\0\u0cc4\0\53\0\u0cef\0\u0d1a"+
-    "\0\u0d45\0\u0d70\0\u0d9b\0\u0dc6\0\u0df1\0\u0e1c\0\u0e47\0\u0e72"+
-    "\0\u0e9d\0\u0ec8\0\u0ef3\0\u0f1e";
+    "\0\0\0\16\0\34\0\52\0\16\0\70\0\106\0\124"+
+    "\0\142\0\160\0\16\0\176\0\176";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[108];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -312,77 +300,14 @@ class Lexico {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\0\2\2\1\3\1\4\1\5\1\6\1\7\1\10"+
-    "\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20"+
-    "\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
-    "\1\31\1\32\1\33\1\24\1\34\1\24\1\35\1\36"+
-    "\1\37\1\40\1\41\1\42\1\43\1\44\1\45\1\46"+
-    "\1\47\1\24\55\0\1\2\50\0\4\4\1\50\46\4"+
-    "\22\0\1\51\52\0\1\52\43\0\1\53\52\0\1\53"+
-    "\1\0\2\16\56\0\1\54\52\0\1\55\1\56\51\0"+
-    "\1\57\45\0\2\24\5\0\27\24\15\0\2\24\5\0"+
-    "\15\24\1\60\2\24\1\61\6\24\15\0\2\24\5\0"+
-    "\5\24\1\62\21\24\15\0\2\24\5\0\1\24\1\63"+
-    "\14\24\1\64\10\24\15\0\2\24\5\0\11\24\1\65"+
-    "\4\24\1\66\10\24\15\0\2\24\5\0\13\24\1\63"+
-    "\1\24\1\60\11\24\15\0\2\24\5\0\11\24\1\67"+
-    "\4\24\1\70\4\24\1\71\3\24\15\0\2\24\5\0"+
-    "\16\24\1\72\10\24\15\0\2\24\5\0\6\24\1\73"+
-    "\6\24\1\73\11\24\15\0\2\24\5\0\1\24\1\74"+
-    "\25\24\15\0\2\24\5\0\16\24\1\60\10\24\15\0"+
-    "\2\24\5\0\11\24\1\75\4\24\1\76\10\24\15\0"+
-    "\2\24\5\0\6\24\1\73\11\24\1\73\6\24\15\0"+
-    "\2\24\5\0\1\24\1\77\16\24\1\100\6\24\15\0"+
-    "\2\24\5\0\5\24\1\101\21\24\15\0\2\24\5\0"+
-    "\5\24\1\76\21\24\15\0\2\24\5\0\10\24\1\102"+
-    "\5\24\1\73\7\24\1\103\15\0\2\24\5\0\15\24"+
-    "\1\104\11\24\15\0\2\24\5\0\1\24\1\70\25\24"+
-    "\15\0\2\24\5\0\10\24\1\105\1\106\15\24\22\0"+
-    "\1\107\45\0\1\110\1\111\56\0\1\112\52\0\1\113"+
-    "\52\0\1\114\52\0\1\115\45\0\2\24\5\0\4\24"+
-    "\1\73\22\24\15\0\2\24\5\0\20\24\1\116\6\24"+
-    "\15\0\2\24\5\0\7\24\1\117\17\24\15\0\2\24"+
-    "\5\0\21\24\1\120\5\24\15\0\2\24\5\0\15\24"+
-    "\1\121\11\24\15\0\2\24\5\0\24\24\1\73\2\24"+
-    "\15\0\2\24\3\0\1\122\1\0\25\24\1\123\1\24"+
-    "\15\0\2\24\5\0\13\24\1\120\13\24\15\0\2\24"+
-    "\5\0\20\24\1\73\6\24\15\0\2\24\5\0\15\24"+
-    "\1\124\11\24\15\0\2\24\5\0\22\24\1\125\4\24"+
-    "\15\0\2\24\3\0\1\122\1\0\27\24\15\0\2\24"+
-    "\5\0\2\24\1\126\24\24\15\0\2\24\5\0\13\24"+
-    "\1\73\13\24\15\0\2\24\5\0\22\24\1\73\4\24"+
-    "\15\0\2\24\5\0\3\24\1\127\23\24\15\0\2\24"+
-    "\5\0\16\24\1\130\10\24\15\0\2\24\5\0\3\24"+
-    "\1\131\13\24\1\132\7\24\15\0\2\24\5\0\5\24"+
-    "\1\133\21\24\15\0\2\24\5\0\17\24\1\120\7\24"+
-    "\15\0\2\24\5\0\22\24\1\134\4\24\15\0\2\24"+
-    "\5\0\11\24\1\67\15\24\15\0\2\24\5\0\22\24"+
-    "\1\135\4\24\22\0\1\136\45\0\2\111\3\0\1\136"+
-    "\45\0\2\24\5\0\1\24\1\137\25\24\15\0\2\24"+
-    "\5\0\11\24\1\133\15\24\15\0\2\24\5\0\5\24"+
-    "\1\73\21\24\15\0\2\24\5\0\21\24\1\76\5\24"+
-    "\15\0\2\24\5\0\15\24\1\72\11\24\15\0\2\24"+
-    "\5\0\3\24\1\140\23\24\15\0\2\24\5\0\16\24"+
-    "\1\73\10\24\15\0\2\24\5\0\5\24\1\75\21\24"+
-    "\15\0\2\24\5\0\12\24\1\141\14\24\15\0\2\24"+
-    "\5\0\3\24\1\142\3\24\1\143\17\24\15\0\2\24"+
-    "\5\0\16\24\1\144\10\24\15\0\2\24\5\0\5\24"+
-    "\1\145\21\24\15\0\2\24\5\0\15\24\1\73\11\24"+
-    "\15\0\2\24\5\0\11\24\1\75\15\24\15\0\2\24"+
-    "\5\0\10\24\1\73\16\24\15\0\2\24\5\0\26\24"+
-    "\1\73\15\0\2\24\5\0\22\24\1\146\4\24\15\0"+
-    "\2\24\5\0\5\24\1\60\21\24\15\0\2\24\5\0"+
-    "\5\24\1\147\21\24\15\0\2\24\5\0\20\24\1\150"+
-    "\6\24\15\0\2\24\5\0\20\24\1\60\6\24\15\0"+
-    "\2\24\5\0\1\24\1\76\25\24\15\0\2\24\5\0"+
-    "\11\24\1\151\15\24\15\0\2\24\5\0\4\24\1\152"+
-    "\22\24\15\0\2\24\5\0\1\24\1\153\25\24\15\0"+
-    "\2\24\5\0\16\24\1\133\10\24\15\0\2\24\5\0"+
-    "\23\24\1\154\3\24\15\0\2\24\5\0\14\24\1\73"+
-    "\12\24\15\0\2\24\5\0\20\24\1\120\6\24";
+    "\1\0\2\2\1\3\1\4\2\5\1\6\1\7\1\10"+
+    "\1\11\1\5\1\10\1\12\20\0\1\2\13\0\4\4"+
+    "\1\13\11\4\6\0\1\14\15\0\1\14\2\7\20\0"+
+    "\1\5\15\0\2\5\10\0\2\12\4\0\1\12\7\0"+
+    "\2\15\5\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[3913];
+    int [] result = new int[140];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -425,12 +350,11 @@ class Lexico {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\3\0\6\11\3\1\1\11\1\1"+
-    "\1\11\25\1\1\0\2\11\5\0\27\1\1\11\2\0"+
-    "\4\11\4\1\1\11\13\1\1\11\16\1";
+    "\1\0\1\11\1\1\1\0\1\11\5\1\1\11\1\0"+
+    "\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[108];
+    int [] result = new int[13];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -985,120 +909,90 @@ public static void main(String[] argv) {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { /* ignorar */
+            { /* Ignorar */
             }
           // fall through
-          case 24: break;
+          case 7: break;
           case 2:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMultiplicacao, new Valor(yytext()));
+            { switch (yytext()) {
+        case ":=": return new Token(yyline + 1, yycolumn + 1, Classe.cAtribuicao, new Valor(yytext()));
+        case ">=": return new Token(yyline + 1, yycolumn + 1, Classe.cMaiorIgual, new Valor(yytext()));
+        case "<=": return new Token(yyline + 1, yycolumn + 1, Classe.cMenorIgual, new Valor(yytext()));
+        case "<>": return new Token(yyline + 1, yycolumn + 1, Classe.cDiferente, new Valor(yytext()));
+        case ":":  return new Token(yyline + 1, yycolumn + 1, Classe.cDoisPontos, new Valor(yytext()));
+        case "+":  return new Token(yyline + 1, yycolumn + 1, Classe.cMais, new Valor(yytext()));
+        case "-":  return new Token(yyline + 1, yycolumn + 1, Classe.cMenos, new Valor(yytext()));
+        case "/":  return new Token(yyline + 1, yycolumn + 1, Classe.cDivisao, new Valor(yytext()));
+        case "*":  return new Token(yyline + 1, yycolumn + 1, Classe.cMultiplicacao, new Valor(yytext()));
+        case ">":  return new Token(yyline + 1, yycolumn + 1, Classe.cMaior, new Valor(yytext()));
+        case "<":  return new Token(yyline + 1, yycolumn + 1, Classe.cMenor, new Valor(yytext()));
+        case "=":  return new Token(yyline + 1, yycolumn + 1, Classe.cIgual, new Valor(yytext()));
+        case ",":  return new Token(yyline + 1, yycolumn + 1, Classe.cVirgula, new Valor(yytext()));
+        case ";":  return new Token(yyline + 1, yycolumn + 1, Classe.cPontoVirgula, new Valor(yytext()));
+        case ".":  return new Token(yyline + 1, yycolumn + 1, Classe.cPonto, new Valor(yytext()));
+        case "(": return new Token(yyline + 1, yycolumn + 1, Classe.cParEsq, new Valor(yytext()));
+        case ")": return new Token(yyline + 1, yycolumn + 1, Classe.cParDir, new Valor(yytext()));
+    }
             }
           // fall through
-          case 25: break;
+          case 8: break;
           case 3:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMais);
-            }
-          // fall through
-          case 26: break;
-          case 4:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cVirgula, new Valor(yytext()));
-            }
-          // fall through
-          case 27: break;
-          case 5:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMenos, new Valor(yytext()));
-            }
-          // fall through
-          case 28: break;
-          case 6:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cPonto, new Valor(yytext()));
-            }
-          // fall through
-          case 29: break;
-          case 7:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cDivisao, new Valor(yytext()));
-            }
-          // fall through
-          case 30: break;
-          case 8:
             { return new Token(yyline + 1, yycolumn + 1, Classe.cInt, new Valor(Integer.parseInt(yytext())));
             }
           // fall through
-          case 31: break;
-          case 9:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cDoisPontos, new Valor(yytext()));
+          case 9: break;
+          case 4:
+            { switch (yytext()) {
+    case "and":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "array": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "begin":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "case":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "const":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "div": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "do":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "downto":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "else": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "end": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "file": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "for":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "function":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "goto":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "if":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "in":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "label": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "mod": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "nil": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "not":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "of":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "or":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "packed":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "procedure":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "program":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "record":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "repeat": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "set": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "then": return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "to":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "type":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "until":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "var":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "while":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    case "with":  return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
+    default:  return new Token(yyline + 1, yycolumn + 1, Classe.cId, new Valor(yytext()));
+  }
             }
           // fall through
-          case 32: break;
-          case 10:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cPontoVirgula, new Valor(yytext()));
-            }
-          // fall through
-          case 33: break;
-          case 11:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMenor, new Valor(yytext()));
-            }
-          // fall through
-          case 34: break;
-          case 12:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cIgual, new Valor(yytext()));
-            }
-          // fall through
-          case 35: break;
-          case 13:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMaior, new Valor(yytext()));
-            }
-          // fall through
-          case 36: break;
-          case 14:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cId, new Valor(yytext()));
-            }
-          // fall through
-          case 37: break;
-          case 15:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cParEsq, new Valor(yytext()));
-            }
-          // fall through
-          case 38: break;
-          case 16:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cParDir, new Valor(yytext()));
-            }
-          // fall through
-          case 39: break;
-          case 17:
+          case 10: break;
+          case 5:
             { return new Token(yyline + 1, yycolumn + 1, Classe.cString, new Valor(yytext()));
             }
           // fall through
-          case 40: break;
-          case 18:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cAtribuicao, new Valor(yytext()));
+          case 11: break;
+          case 6:
+            { return new Token(yyline + 1, yycolumn + 1, Classe.cReal, new Valor(Double.parseDouble(yytext())));
             }
           // fall through
-          case 41: break;
-          case 19:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMenorIgual, new Valor(yytext()));
-            }
-          // fall through
-          case 42: break;
-          case 20:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cDiferente, new Valor(yytext()));
-            }
-          // fall through
-          case 43: break;
-          case 21:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cMaiorIgual, new Valor(yytext()));
-            }
-          // fall through
-          case 44: break;
-          case 22:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cPalRes, new Valor(yytext()));
-            }
-          // fall through
-          case 45: break;
-          case 23:
-            { return new Token(yyline + 1, yycolumn + 1, Classe.cReal, new Valor(Integer.parseInt(yytext())));
-            }
-          // fall through
-          case 46: break;
+          case 12: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
